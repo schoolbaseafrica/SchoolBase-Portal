@@ -67,6 +67,14 @@ jobs:
             git checkout main
             git pull origin main
             
+            # Install pnpm if not available
+            if ! command -v pnpm &> /dev/null; then
+              echo "pnpm not found, installing..."
+              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              export PATH="$HOME/.local/share/pnpm:$PATH"
+              source ~/.bashrc || true
+            fi
+            
             # Install dependencies
             pnpm install --frozen-lockfile
             
@@ -134,6 +142,14 @@ jobs:
             # Ensure we're on main branch and get latest code
             git checkout main
             git pull origin main
+            
+            # Install pnpm if not available
+            if ! command -v pnpm &> /dev/null; then
+              echo "pnpm not found, installing..."
+              curl -fsSL https://get.pnpm.io/install.sh | sh -
+              export PATH="$HOME/.local/share/pnpm:$PATH"
+              source ~/.bashrc || true
+            fi
             
             # Install dependencies
             pnpm install --frozen-lockfile
